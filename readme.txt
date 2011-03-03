@@ -48,6 +48,10 @@ it_IT Italy Italian
 
 ro_RO Romania Romanian
 
+ru_RU Russia Russian
+
+tr_TR Turkey Turkish
+
 == Installation ==
 
 1. Upload the 'register-plus-redux' directory to the '/wp-content/plugins/' directory
@@ -87,7 +91,7 @@ HTML attributes should go in the following order name -> id -> class
 == Changelog ==
 = 3.6.23 =
 
-* Added fr_FR and ro_RO translations
+* Added fr_FR, ro_RO, ru_RU, and tr_TR translations
 * Fixed bug with auto-complete not filling in user_login and user_email, as reported by webakimbo
 * Fixed invitation code tracking dashboard widget, as reported by Galyn
 
