@@ -442,3 +442,6 @@ April 10 2008 by Skullbit
 
 = 3.6 =
 First stable release by radiok with bugfixes to issues found in 3.5.1
+
+= 3.7.0 =
+Major change to avoid conflicts
