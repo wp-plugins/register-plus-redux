@@ -64,11 +64,11 @@ tr_TR Turkey Turkish
 Register Plus was abandoned by skullbit sometime after September, 2008 following the release of Register Plus 3.5.1.  As of September, 2009 skullbit's website was undergoing maintenance.  Several bugs have been reported to the Register Plus plugin forum since that time, to resolve these bugs and continue development radiok forked the project.
 
 = What's New? or What's Coming Soon? =
-Visit <http://radiok.info/blog/category/history/> to view recent changes
+Visit <http://radiok.info/category/history/> to view recent changes
 
-Visit <http://radiok.info/blog/category/worklog/> to view features in development
+Visit <http://radiok.info/category/worklog/> to view features in development
 
-Visit <http://radiok.info/blog/category/feature-request/> to view outstanding feature requests
+Visit <http://radiok.info/category/feature-request/> to view outstanding feature requests
 
 = Didn't Register Plus have CAPTCHA? =
 Register Plus offered two different CAPTCHA methods, a simple random CAPTCHA and reCAPTCHA.  The simple one randomly created a 5-character sequence on a background image with two random lines drawn across the image, this CAPTCHA would be very easy for any OCR program to decipher as the characters were not modified in anyway and contrast was high.  reCAPTCHA is a great idea, but there is another plugin, [WP-reCAPTCHA](http://wordpress.org/extend/plugins/wp-recaptcha/) endorsed by the reCAPTCHA developers that can be used to add reCAPTCHA to the registration page.  I also endorse the use of that plugin for that purpose.
