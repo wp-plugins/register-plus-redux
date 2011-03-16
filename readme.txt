@@ -89,8 +89,10 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
-= 3.6.23 =
+= 3.7.0 =
+March 16, 2011 by radiok
 
+* Major change, wp_new_user_notification is only created as neccessary
 * Added fr_FR, ro_RO, ru_RU, and tr_TR translations
 * Fixed bug with auto-complete not filling in user_login and user_email, as reported by webakimbo
 * Fixed invitation code tracking dashboard widget, as reported by Galyn
