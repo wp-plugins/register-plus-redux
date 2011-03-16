@@ -37,10 +37,6 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 			
 			add_filter("allow_password_reset", array($this, "filter_password_reset"), 10, 2);
 
-			//LOCALIZATION
-			//Place your language file in the plugin folder and name it "register-plus-redux-{language}.mo replace {language} with your language value from wp-config.php
-			load_plugin_textdomain("register-plus-redux", false, dirname(plugin_basename(__FILE__)));
-			
 			if ( $wp_version < 3.0 )
 				add_action("admin_notices", array($this, "VersionWarning"));
 		}
@@ -78,6 +74,10 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 				}
 				if ( !empty($update) ) update_option("register_plus_redux_options", $options);
 			}
+
+			//LOCALIZATION
+			//Place your language file in the plugin folder and name it "register-plus-redux-{language}.mo replace {language} with your language value from wp-config.php
+			load_plugin_textdomain("register-plus-redux", false, dirname(plugin_basename(__FILE__)));
 		}
 
 		function DeleteExpiredUsers() {

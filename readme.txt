@@ -4,7 +4,7 @@ Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 3.6.22
+Stable tag: 3.7.1
 
 Enhances the user registration process with complete customization and additional administration options.
 
@@ -89,6 +89,11 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
+= 3.7.1 =
+March 16, 2011 by radiok
+
+* Moved load_plugin_textdomain from constructor to initialization
+
 = 3.7.0 =
 March 16, 2011 by radiok
 
