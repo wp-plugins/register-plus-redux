@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Register Plus Redux package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Register Plus Redux 3.7.2\n"
+"Project-Id-Version: Register Plus Redux 3.7.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/register-plus-redux\n"
-"POT-Creation-Date: 2011-03-25 17:49:43+00:00\n"
+"POT-Creation-Date: 2011-03-29 17:46:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -258,8 +258,8 @@ msgstr ""
 msgid ""
 "By default, after registering, users will be sent to %s/wp-login.php?"
 "checkemail=registered, leave this value empty if you do not wish to change "
-"this behavior. You may enter another address here, however, if that "
-"addresses is not on the same domain, Wordpress will ignore the redirect."
+"this behavior. You may enter another address here, however, if that address "
+"is not on the same domain, Wordpress will ignore the redirect."
 msgstr ""
 
 #: register-plus-redux.php:531
@@ -314,31 +314,31 @@ msgstr ""
 msgid "Require"
 msgstr ""
 
-#: register-plus-redux.php:562 register-plus-redux.php:1582
+#: register-plus-redux.php:562 register-plus-redux.php:1597
 msgid "First Name"
 msgstr ""
 
-#: register-plus-redux.php:567 register-plus-redux.php:1590
+#: register-plus-redux.php:567 register-plus-redux.php:1605
 msgid "Last Name"
 msgstr ""
 
-#: register-plus-redux.php:572 register-plus-redux.php:1598
+#: register-plus-redux.php:572 register-plus-redux.php:1613
 msgid "Website"
 msgstr ""
 
-#: register-plus-redux.php:577 register-plus-redux.php:1606
+#: register-plus-redux.php:577 register-plus-redux.php:1621
 msgid "AIM"
 msgstr ""
 
-#: register-plus-redux.php:582 register-plus-redux.php:1614
+#: register-plus-redux.php:582 register-plus-redux.php:1629
 msgid "Yahoo IM"
 msgstr ""
 
-#: register-plus-redux.php:587 register-plus-redux.php:1622
+#: register-plus-redux.php:587 register-plus-redux.php:1637
 msgid "Jabber / Google Talk"
 msgstr ""
 
-#: register-plus-redux.php:592 register-plus-redux.php:1630
+#: register-plus-redux.php:592 register-plus-redux.php:1645
 msgid "About Yourself"
 msgstr ""
 
@@ -382,8 +382,8 @@ msgstr ""
 msgid "Mismatch"
 msgstr ""
 
-#: register-plus-redux.php:639 register-plus-redux.php:1743
-#: register-plus-redux.php:2051
+#: register-plus-redux.php:639 register-plus-redux.php:1758
+#: register-plus-redux.php:2069
 msgid "Invitation Code"
 msgstr ""
 
@@ -917,177 +917,177 @@ msgstr ""
 msgid "Delete Selected Users"
 msgstr ""
 
-#: register-plus-redux.php:1572
+#: register-plus-redux.php:1587
 msgid "Confirm E-mail"
 msgstr ""
 
-#: register-plus-redux.php:1631
+#: register-plus-redux.php:1646
 msgid ""
 "Share a little biographical information to fill out your profile. This may "
 "be shown publicly."
 msgstr ""
 
-#: register-plus-redux.php:1726
+#: register-plus-redux.php:1741
 msgid "Password"
 msgstr ""
 
-#: register-plus-redux.php:1731
+#: register-plus-redux.php:1746
 msgid "Confirm Password"
 msgstr ""
 
-#: register-plus-redux.php:1736
+#: register-plus-redux.php:1751
 msgid ""
 "Your password must be at least %d characters long. To make your password "
 "stronger, use upper and lower case letters, numbers, and the following "
 "symbols !@#$%%^&amp;*()"
 msgstr ""
 
-#: register-plus-redux.php:1747
+#: register-plus-redux.php:1762
 msgid ""
 "This website is currently closed to public registrations. You will need an "
 "invitation code to register."
 msgstr ""
 
-#: register-plus-redux.php:1749
+#: register-plus-redux.php:1764
 msgid "Have an invitation code? Enter it here. (This is not required)"
 msgstr ""
 
-#: register-plus-redux.php:1796
+#: register-plus-redux.php:1811
 msgid ""
 "<strong>ERROR</strong>: Email address is not appropriate as a username, "
 "please enter another email address."
 msgstr ""
 
-#: register-plus-redux.php:1802 register-plus-redux.php:1911
+#: register-plus-redux.php:1817 register-plus-redux.php:1926
 msgid ""
 "<strong>ERROR</strong>: This username is already registered, please choose "
 "another one."
 msgstr ""
 
-#: register-plus-redux.php:1807 register-plus-redux.php:1916
+#: register-plus-redux.php:1822 register-plus-redux.php:1931
 msgid "<strong>ERROR</strong>: Please confirm your e-mail address."
 msgstr ""
 
-#: register-plus-redux.php:1809 register-plus-redux.php:1918
+#: register-plus-redux.php:1824 register-plus-redux.php:1933
 msgid "<strong>ERROR</strong>: Your e-mail address does not match."
 msgstr ""
 
-#: register-plus-redux.php:1816 register-plus-redux.php:1925
+#: register-plus-redux.php:1831 register-plus-redux.php:1940
 msgid "<strong>ERROR</strong>: Please enter your first name."
 msgstr ""
 
-#: register-plus-redux.php:1821 register-plus-redux.php:1930
+#: register-plus-redux.php:1836 register-plus-redux.php:1945
 msgid "<strong>ERROR</strong>: Please enter your last name."
 msgstr ""
 
-#: register-plus-redux.php:1826 register-plus-redux.php:1935
+#: register-plus-redux.php:1841 register-plus-redux.php:1950
 msgid "<strong>ERROR</strong>: Please enter your website URL."
 msgstr ""
 
-#: register-plus-redux.php:1831 register-plus-redux.php:1940
+#: register-plus-redux.php:1846 register-plus-redux.php:1955
 msgid "<strong>ERROR</strong>: Please enter your AIM username."
 msgstr ""
 
-#: register-plus-redux.php:1836 register-plus-redux.php:1945
+#: register-plus-redux.php:1851 register-plus-redux.php:1960
 msgid "<strong>ERROR</strong>: Please enter your Yahoo IM username."
 msgstr ""
 
-#: register-plus-redux.php:1841 register-plus-redux.php:1950
+#: register-plus-redux.php:1856 register-plus-redux.php:1965
 msgid ""
 "<strong>ERROR</strong>: Please enter your Jabber / Google Talk username."
 msgstr ""
 
-#: register-plus-redux.php:1846 register-plus-redux.php:1955
+#: register-plus-redux.php:1861 register-plus-redux.php:1970
 msgid "<strong>ERROR</strong>: Please enter some information about yourself."
 msgstr ""
 
-#: register-plus-redux.php:1854 register-plus-redux.php:1963
+#: register-plus-redux.php:1869 register-plus-redux.php:1978
 msgid "<strong>ERROR</strong>: Please complete %s."
 msgstr ""
 
-#: register-plus-redux.php:1857 register-plus-redux.php:1966
+#: register-plus-redux.php:1872 register-plus-redux.php:1981
 msgid ""
 "<strong>ERROR</strong>: Please enter new value for %s, value specified is "
 "not in the correct format."
 msgstr ""
 
-#: register-plus-redux.php:1862 register-plus-redux.php:1971
+#: register-plus-redux.php:1877 register-plus-redux.php:1986
 msgid "<strong>ERROR</strong>: Please enter a password."
 msgstr ""
 
-#: register-plus-redux.php:1864 register-plus-redux.php:1973
+#: register-plus-redux.php:1879 register-plus-redux.php:1988
 msgid "<strong>ERROR</strong>: Your password does not match."
 msgstr ""
 
-#: register-plus-redux.php:1866 register-plus-redux.php:1975
+#: register-plus-redux.php:1881 register-plus-redux.php:1990
 msgid ""
 "<strong>ERROR</strong>: Your password must be at least %d characters in "
 "length."
 msgstr ""
 
-#: register-plus-redux.php:1873 register-plus-redux.php:1982
+#: register-plus-redux.php:1888 register-plus-redux.php:1997
 msgid "<strong>ERROR</strong>: Please enter an invitation code."
 msgstr ""
 
-#: register-plus-redux.php:1884 register-plus-redux.php:1993
+#: register-plus-redux.php:1899 register-plus-redux.php:2008
 msgid "<strong>ERROR</strong>: That invitation code is invalid."
 msgstr ""
 
-#: register-plus-redux.php:1890 register-plus-redux.php:1895
-#: register-plus-redux.php:1900 register-plus-redux.php:1999
-#: register-plus-redux.php:2004 register-plus-redux.php:2009
+#: register-plus-redux.php:1905 register-plus-redux.php:1910
+#: register-plus-redux.php:1915 register-plus-redux.php:2014
+#: register-plus-redux.php:2019 register-plus-redux.php:2024
 msgid "<strong>ERROR</strong>: Please accept the %s"
 msgstr ""
 
-#: register-plus-redux.php:2047
+#: register-plus-redux.php:2065
 msgid "Additional Information"
 msgstr ""
 
-#: register-plus-redux.php:2194
+#: register-plus-redux.php:2212
 msgid ""
 "Please verify your account using the verification link sent to your email "
 "address."
 msgstr ""
 
-#: register-plus-redux.php:2196 register-plus-redux.php:2459
+#: register-plus-redux.php:2214 register-plus-redux.php:2477
 msgid ""
 "Your account will be reviewed by an administrator and you will be notified "
 "when it is activated."
 msgstr ""
 
-#: register-plus-redux.php:2248
+#: register-plus-redux.php:2266
 msgid "Your Login Information"
 msgstr ""
 
-#: register-plus-redux.php:2256
+#: register-plus-redux.php:2274
 msgid "Verify Your Account"
 msgstr ""
 
-#: register-plus-redux.php:2266
+#: register-plus-redux.php:2284
 msgid "New User Registered"
 msgstr ""
 
-#: register-plus-redux.php:2426
+#: register-plus-redux.php:2444
 msgid "Invalid verification code."
 msgstr ""
 
-#: register-plus-redux.php:2454
+#: register-plus-redux.php:2472
 msgid ""
 "Thank you %s, your account has been verified, your password will be emailed "
 "to you."
 msgstr ""
 
-#: register-plus-redux.php:2456
+#: register-plus-redux.php:2474
 msgid ""
 "Thank you %s, your account has been verified, please login with the password "
 "you specified during registration."
 msgstr ""
 
-#: register-plus-redux.php:2490
+#: register-plus-redux.php:2508
 msgid "Settings"
 msgstr ""
 
-#: register-plus-redux.php:2539
+#: register-plus-redux.php:2557
 msgid ""
 "There is another active plugin that is conflicting with Register Plus Redux. "
 "The conflicting plugin is creating its own wp_new_user_notification "
@@ -1097,7 +1097,7 @@ msgid ""
 "wp_new_user_notification-conflicts/</a> for help resolving this issue."
 msgstr ""
 
-#: register-plus-redux.php:2544
+#: register-plus-redux.php:2562
 msgid ""
 "Register Plus Redux requires WordPress 3.0 or greater. You are currently "
 "using WordPress %s, please upgrade or deactivate Register Plus Redux."
