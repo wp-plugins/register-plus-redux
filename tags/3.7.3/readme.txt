@@ -96,6 +96,11 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
+= 3.7.3 =
+March 29, 2011 by radiok
+
+* Regression, Wordpress 3.1 does not resolve wp_enqueue_script problem, reverted code to 3.7.1
+
 = 3.7.2 =
 March 23, 2011 by radiok
 
