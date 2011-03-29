@@ -5,7 +5,7 @@ Plugin Name: Register Plus Redux
 Author URI: http://radiok.info/
 Plugin URI: http://radiok.info/category/register-plus-redux/
 Description: Enhances the user registration process with complete customization and additional administration options.
-Version: 3.7.2
+Version: 3.7.3
 Text Domain: register-plus-redux
 */
 
@@ -524,7 +524,7 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 						<th scope="row"><?php _e("Registration Redirect", "register-plus-redux"); ?></th>
 						<td>
 							<input type="text" name="registration_redirect" id="registration_redirect" value="<?php echo $options["registration_redirect"]; ?>" style="width: 60%;" /><br />
-							<?php echo sprintf(__("By default, after registering, users will be sent to %s/wp-login.php?checkemail=registered, leave this value empty if you do not wish to change this behavior. You may enter another address here, however, if that addresses is not on the same domain, Wordpress will ignore the redirect.", "register-plus-redux"), home_url()); ?><br />
+							<?php echo sprintf(__("By default, after registering, users will be sent to %s/wp-login.php?checkemail=registered, leave this value empty if you do not wish to change this behavior. You may enter another address here, however, if that address is not on the same domain, Wordpress will ignore the redirect.", "register-plus-redux"), home_url()); ?><br />
 						</td>
 					</tr>
 					<tr valign="top" class="disabled">
@@ -1346,7 +1346,10 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 			}
 			if ( isset($_GET["action"]) && $_GET["action"] == "register" ) {
 				if ( !empty($options["username_is_email"]) ) {
-					wp_enqueue_script("jquery");
+					if ( empty($jquery_loaded) ) {
+						wp_print_scripts("jquery");
+						$jquery_loaded = true;
+					}
 					?>
 					<script type="text/javascript">
 					jQuery(document).ready(function() {
@@ -1358,7 +1361,10 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 				if ( isset($_GET["user_login"]) ) $_POST["user_login"] = $_GET["user_login"];
 				if ( isset($_GET["user_email"]) ) $_POST["user_email"] = $_GET["user_email"];
 				if ( !empty($_POST["user_login"]) || !empty($_POST["user_email"]) ) {
-					wp_enqueue_script("jquery");
+					if ( empty($jquery_loaded) ) {
+						wp_print_scripts("jquery");
+						$jquery_loaded = true;
+					}
 					?>
 					<script type="text/javascript">
 					jQuery(document).ready(function() {
@@ -1457,8 +1463,11 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 				echo "\n</style>";
 
 				if ( !empty($show_custom_date_fields) ) {
-					wp_enqueue_script("jquery");
-					wp_enqueue_script("jquery-ui-core");
+					if ( empty($jquery_loaded) ) {
+						wp_print_scripts("jquery");
+						$jquery_loaded = true;
+					}
+					wp_print_scripts("jquery-ui-core");
 					?>
 					<link type="text/css" rel="stylesheet" href="<?php echo plugins_url("js/theme/jquery.ui.all.css", __FILE__); ?>" />
 					<script type="text/javascript" src="<?php echo plugins_url("js/jquery.ui.datepicker.min.js", __FILE__); ?>"></script>
@@ -1470,7 +1479,10 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 					<?php
 				}
 				if ( !empty($options["required_fields_asterisk"]) ) {
-					wp_enqueue_script("jquery");
+					if ( empty($jquery_loaded) ) {
+						wp_print_scripts("jquery");
+						$jquery_loaded = true;
+					}
 					?>
 					<script type="text/javascript">
 					jQuery(document).ready(function() {
@@ -1481,7 +1493,10 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 					<?php
 				}
 				if ( !empty($options["user_set_password"]) && !empty($options["show_password_meter"]) ) {
-					wp_enqueue_script("jquery");
+					if ( empty($jquery_loaded) ) {
+						wp_print_scripts("jquery");
+						$jquery_loaded = true;
+					}
 					?>
 					<script type="text/javascript">
 						/* <![CDATA[ */
@@ -2026,8 +2041,11 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 				}
 			}
 			if ( !empty($show_custom_date_fields) ) {
-				wp_enqueue_script("jquery");
-				wp_enqueue_script("jquery-ui-core");
+				if ( empty($jquery_loaded) ) {
+					wp_print_scripts("jquery");
+					$jquery_loaded = true;
+				}
+				wp_print_scripts("jquery-ui-core");
 				?>
 				<link type="text/css" rel="stylesheet" href="<?php echo plugins_url("js/theme/jquery.ui.all.css", __FILE__); ?>" />
 				<script type="text/javascript" src="<?php echo plugins_url("js/jquery.ui.datepicker.min.js", __FILE__); ?>"></script>
@@ -2375,7 +2393,7 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 			$message = str_replace("%aim%", get_user_meta($user_info->ID, "aim", true), $message);
 			$message = str_replace("%yahoo%", get_user_meta($user_info->ID, "yahoo", true), $message);
 			$message = str_replace("%jabber%", get_user_meta($user_info->ID, "jabber", true), $message);
-			$message = str_replace("%about%", stripslashes(get_user_meta($user_info->ID, "about", true)), $message);
+			$message = str_replace("%about%", stripslashes(get_user_meta($user_info->ID, "description", true)), $message);
 			$message = str_replace("%invitation_code%", get_user_meta($user_info->ID, "invitation_code", true), $message);
 			$custom_fields = get_option("register_plus_redux_custom_fields");
 			if ( !is_array($custom_fields) ) $custom_fields = array();
