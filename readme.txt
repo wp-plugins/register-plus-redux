@@ -3,8 +3,8 @@ Contributors: skullbit, radiok
 Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
 Requires at least: 3.0
-Tested up to: 3.0.1
-Stable tag: 3.7.1
+Tested up to: 3.1
+Stable tag: 3.7.2
 
 Enhances the user registration process with complete customization and additional administration options.
 
@@ -16,6 +16,8 @@ Enhancements to registration include:
 
 * Customized registration page, including your own logo, disclaimer, license agreement, or privacy policy
 
+* Use Email Address as Username __(new feature in version 3.7.2)__
+
 * User-entered password (with password strength meter)
 
 * Added profile fields
@@ -24,7 +26,7 @@ Enhancements to registration include:
 
 * Invitation code system (with dashboard widget to track invites)
 
-* User-defined fields
+* User-defined fields __(can be checked against regex as of version 3.7.2)__
 
 * Email verification of new users
 
@@ -39,6 +41,8 @@ Also includes fixes for known Register Plus bugs.
 Register Plus Redux was forked from Register Plus, developed by skullbit, which was abandoned in 2008.
 
 Available in the following translations:
+
+de_DE Germany German
 
 fr_FR France French
 
@@ -70,11 +74,14 @@ Visit <http://radiok.info/category/worklog/> to view features in development
 
 Visit <http://radiok.info/category/feature-request/> to view outstanding feature requests
 
-= Didn't Register Plus have CAPTCHA? =
-Register Plus offered two different CAPTCHA methods, a simple random CAPTCHA and reCAPTCHA.  The simple one randomly created a 5-character sequence on a background image with two random lines drawn across the image, this CAPTCHA would be very easy for any OCR program to decipher as the characters were not modified in anyway and contrast was high.  reCAPTCHA is a great idea, but there is another plugin, [WP-reCAPTCHA](http://wordpress.org/extend/plugins/wp-recaptcha/) endorsed by the reCAPTCHA developers that can be used to add reCAPTCHA to the registration page.  I also endorse the use of that plugin for that purpose.
+= Didn't Register Plus have CAPTCHA? How do I add a CAPTCHA to the registration form? =
+Register Plus offered two different CAPTCHA methods, a simple random CAPTCHA and reCAPTCHA.  The simple one randomly created a 5-character sequence on a background image with two random lines drawn across the image, this CAPTCHA would be very easy for any OCR program to decipher as the characters were not modified in anyway and contrast was high.  reCAPTCHA is a great idea, but there is another plugin, [WP-reCAPTCHA](http://wordpress.org/extend/plugins/wp-recaptcha/) endorsed by the reCAPTCHA developers that can be used to add reCAPTCHA to the registration page.  I endorse the use of that plugin for that purpose.
 
 = Didn't Register Plus have a feature to allow duplicate e-mail addresses? =
-Register Plus did have a feature that allowed multiple users to register with the same e-mail address.  I'm not sure when that stopped working for Register Plus, but I can assure you, that method doesn't work in WordPress 3.0 and will not work in any future revision.  Register Plus' method was pretty simple, if the email_exists error is thrown, unthrow it.  Well, that works, to a degree, but once WordPress actually builds the user it chokes up and unpleasant things happen, in my experience.  I'll leave this feature to brighter minds then my own to fix.
+Register Plus did have a feature that allowed multiple users to register with the same e-mail address.  I'm not sure when that stopped working for Register Plus, but I can assure you, that method doesn't work in WordPress 3.0 and will not work in the foreseeable future.  Register Plus' method was pretty simple, if the email_exists error is thrown, unthrow it.  Well, that works, to a degree, but once WordPress actually builds the user it chokes up and unpleasant things happen, in my experience.  I'll leave this feature to brighter minds then my own to implement.
+
+= I do not want users to go to the Dashboard after logging in. How do I redirect users after they login? =
+This isn't quite a registration issue, but I can see how the line blurs since A) Redux does have configuration options for the Login screen, and B) Redux has a configuration for redirect after registration.  I briefly considering programming this feature, but [Peter's Login Redirect](http://wordpress.org/extend/plugins/peters-login-redirect/) does everything I could do and so much more.  I endorse the use of that plugin for this purpose.
 
 = Things to Keep in Mind =
 Really more for me than you, but who's nitpicking.
@@ -89,6 +96,26 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
+= 3.7.3 =
+March 29, 2011 by radiok
+
+* Regression, Wordpress 3.1 does not resolve wp_enqueue_script problem, reverted code to 3.7.1
+
+= 3.7.2 =
+March 23, 2011 by radiok
+
+* Added new custom field type, Static Text
+* Added Registration Redirect option
+* Added Email Address as Username option
+* Text fields may now be validated against a regular expression if entered
+* Additional fields are now visible to admin, regardless of visibility to other users
+* Change registration error checking from action to filter for better compatibility with PHP versions before PHP5
+* Fixed bug with asterisks and required fields
+* Fixed bug with l18n only loading for admins
+* Fixed bug with user set passwords still nagging, as reported by Jim
+* Found and repaired additional untranslated strings
+* Added de_DE translation
+
 = 3.7.1 =
 March 16, 2011 by radiok
 
@@ -97,7 +124,7 @@ March 16, 2011 by radiok
 = 3.7.0 =
 March 16, 2011 by radiok
 
-* Major change, wp_new_user_notification is only created as neccessary
+* Major change, wp_new_user_notification is only created as necessary
 * Added fr_FR, ro_RO, ru_RU, and tr_TR translations
 * Fixed bug with auto-complete not filling in user_login and user_email, as reported by webakimbo
 * Fixed invitation code tracking dashboard widget, as reported by Galyn
@@ -225,7 +252,7 @@ September 28, 2010 by radiok
 * Renamed several variables
 * Changed wp_update_user to $wpdb->query for updating user_login
 * Removed function to create random string, use wp_generate_password instead
-* Reogranized wp_new_user_notification more logically
+* Reorganized wp_new_user_notification more logically
 
 = 3.6.8 =
 September 25, 2010 by radiok
@@ -350,7 +377,7 @@ June 23, 2008 by Skullbit
 June 19, 2008 by Skullbit
 
 * Added more localization files
-* Added doccumentation for auto-complete queries
+* Added documentation for auto-complete queries
 * Fixed Admin notification email to now actually really go to the administrator
 
 = 3.0 =
@@ -417,7 +444,7 @@ April 27, 2008 by Skullbit
 = 2.1 =
 April 26, 2008 by Skullbit
 
-* Fixed Admin Registation Password issue
+* Fixed Admin Registration Password issue
 * Added Dashboard Widget for showing invitation code tracking
 * Added Email Verification for ensuring legitimate addresses are registered.  
 * Unvalidated registrations are unable to login and are deleted after a set grace period
@@ -450,3 +477,6 @@ First stable release by radiok with bugfixes to issues found in 3.5.1
 
 = 3.7.0 =
 Major change to avoid conflicts
+
+= 3.7.2 =
+New featues, can use email address as username and validate text fields with regex
