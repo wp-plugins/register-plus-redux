@@ -1119,7 +1119,7 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 			if ( isset($_POST["message_privacy_policy"]) ) $options["message_privacy_policy"] = $_POST["message_privacy_policy"];
 			$options["require_privacy_policy_agree"] = isset($_POST["require_privacy_policy_agree"]) ? $_POST["require_privacy_policy_agree"] : "";
 			if ( isset($_POST["message_privacy_policy_agree"]) ) $options["message_privacy_policy_agree"] = $_POST["message_privacy_policy_agree"];
-			$options["default_css"] = isset($_POST["default_css"][$k]) ? $_POST["default_css"] : "";
+			$options["default_css"] = isset($_POST["default_css"]) ? $_POST["default_css"] : "";
 			if ( isset($_POST["required_fields_style"]) ) $options["required_fields_style"] = $_POST["required_fields_style"];
 			if ( isset($_POST["required_fields_asterisk"]) ) $options["required_fields_asterisk"] = $_POST["required_fields_asterisk"];
 			if ( isset($_POST["starting_tabindex"]) ) $options["starting_tabindex"] = $_POST["starting_tabindex"];
@@ -1589,7 +1589,7 @@ if ( !class_exists("RegisterPlusReduxPlugin") ) {
 				echo "/></label></p>";
 			}
 			if ( !is_array($options["show_fields"]) ) $options["show_fields"] = array();
-			if ( !is_array($options["required_fields"]) ) $options["required_fields"] = array();
+			if ( empty($options["required_fields"]) || !is_array($options["required_fields"]) ) $options["required_fields"] = array();
 			if ( in_array("first_name", $options["show_fields"]) ) {
 				if ( isset($_GET["first_name"]) ) $_POST["first_name"] = $_GET["first_name"];
 				echo "\n<p id=\"first_name-p\"><label id=\"first_name-label\">";
