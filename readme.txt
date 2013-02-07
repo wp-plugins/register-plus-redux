@@ -479,4 +479,4 @@ First stable release by radiok with bugfixes to issues found in 3.5.1
 Major change to avoid conflicts
 
 = 3.7.2 =
-New featues, can use email address as username and validate text fields with regex
+New features, can use email address as username and validate text fields with regex
