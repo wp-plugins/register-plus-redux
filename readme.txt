@@ -2,7 +2,7 @@
 Contributors: radiok, skullbit
 Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
-Requires at least: 3.3
+Requires at least: 3.5
 Tested up to: 3.8.1
 Stable tag: 3.9.10
 
@@ -96,6 +96,9 @@ This isn't quite a registration issue, but I can see how the line blurs since A)
 = Why does Register Plus Redux require WordPress 3.3+ =
 Prior to WordPress 3.2, WordPress required PHP 4, version 3.2 bumped up the requirement to PHP 5 (specifically PHP 5.2).  Register Plus Redux has been built specifically against PHP 5, functions and features may not function properly in PHP 4 or older.  WordPress 3.3 included the full jQuery UI library, previously Register Plus Redux had to include its own copy for the Datepicker widget.
 
+= Why does Register Plus Redux require WordPress 3.5+ =
+Register Plus Redux uses WP_User_Query meta queries which was a developer feature added in WordPress 3.5.
+
 = Can you add a feature to change the width of the Registration Form? / How you change the width of the Registration Form? =
 You can use the Custom Register CSS (found in Register Plus Redux's settings) to specify the width of the Registration form via CSS.  Specifically the code follows:
 `#login { width: 500px; }`
@@ -118,7 +121,7 @@ HTML attributes should go in the following order name -> id -> class
 = 3.9.11 =
 ??? by radiok
 
-* Code cleanup
+* Bumped the "Requires at least" minimum WordPress version to 3.5 following bug reported by taral <http://wordpress.org/support/topic/fatal-error-after-upgrading-to-3910>
 
 = 3.9.10 =
 May 14, 2013 by radiok
