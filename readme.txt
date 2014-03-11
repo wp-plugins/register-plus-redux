@@ -3,7 +3,7 @@ Contributors: radiok, skullbit
 Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
 Requires at least: 3.3
-Tested up to: 3.5
+Tested up to: 3.8.1
 Stable tag: 3.9.10
 
 Enhances the user registration process with complete customization and additional administration options.
@@ -114,6 +114,11 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
+
+= 3.9.11 =
+??? by radiok
+
+* Code cleanup
 
 = 3.9.10 =
 May 14, 2013 by radiok
