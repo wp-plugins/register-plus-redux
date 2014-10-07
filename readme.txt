@@ -118,6 +118,12 @@ HTML attributes should go in the following order name -> id -> class
 
 == Changelog ==
 
+= 3.9.12 =
+Unreleased by radiok
+
+* Fixed jQuery that was altering attributes when it should be altering properties- radiok
+* Fixed uninitialized $errors object- radiok
+
 = 3.9.11 =
 September 11, 2014 by radiok
 
