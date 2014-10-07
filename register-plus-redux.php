@@ -26,7 +26,7 @@ Domain Path: /languages
 // TODO: Enhancement- Alter admin pages to match registration/signup
 // TODO: Enhancement- Widget is lame/near worthless
 
-define( 'RPR_VERSION', '4.0.2' );
+define( 'RPR_VERSION', '4.0.3' );
 define( 'RPR_ACTIVATION_REQUIRED', '3.9.6' );
 
 if ( !class_exists( 'Register_Plus_Redux' ) ) {
