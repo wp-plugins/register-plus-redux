@@ -241,9 +241,11 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 == Changelog ==
 
 = 4.0.0 =
-October 6, 2014 by tanaylakhani
+October 6, 2014 by tanaylakhani, radiok
 
-* ReadyGraph Growth Engine added as an extension
+* ReadyGraph Growth Engine added as an extension- tanaylakhani
+* Fixed jQuery that was altering attributes when it should be altering properties- radiok
+* Fixed uninitialized $errors object- radiok
 
 = 3.9.11 =
 September 11, 2014 by radiok
