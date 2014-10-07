@@ -1,10 +1,10 @@
 === Register Plus Redux ===
-Contributors: skullbit, radiok
+Contributors: Dabelon, radiok, skullbit
 Donate link: http://radiok.info/donate/
 Tags: registration, register, plus, redux, password, invitation, code, email, verification, disclaimer, license, agreement, privacy, policy, logo, moderation, user
-Requires at least: 3.2
-Tested up to: 3.5
-Stable tag: 3.9
+Requires at least: 3.5
+Tested up to: 4.0
+Stable tag: 3.9.11
 
 Enhances the user registration process with complete customization and additional administration options.
 
@@ -36,7 +36,7 @@ Enhancements to registration include:
 
 * Add your own disclaimer, license agreement, or privacy policy to registration or signup page
 
-* Add additional custom fields (textbox, select, checkboxes, radio buttons, textarea) to registration, signup, or profile __(textboxes be validated against regex)__
+* Add additional custom fields (textbox, select, checkboxes, radio buttons, textarea) to registration, signup, or profile __(textboxes can be validated against regex)__
 
 * Customize message to new users
 
@@ -48,19 +48,20 @@ Register Plus Redux was forked from Register Plus, developed by skullbit, after 
 
 Available in the following translations:
 
-de_DE Germany German
-
-fr_FR France French
-
-ir_FA Islamic Republic of Iran Persian
-
-it_IT Italy Italian
-
-ro_RO Romania Romanian
-
-ru_RU Russia Russian
-
-tr_TR Turkey Turkish
+* zh_CN Chinese
+* nl_NL Dutch
+* de_DE German
+* fr_FR French
+* ir_FA Persian
+* it_IT Italian
+* pl_PL Polish
+* pt_BR Portuguese
+* pt_BR Brazilian Portuguese
+* ro_RO Romanian
+* ru_RU Russian
+* es_ES Spanish
+* es_AR Argentinean Spanish
+* tr_TR Turkish
 
 == Installation ==
 
@@ -78,10 +79,10 @@ Register Plus was abandoned by skullbit sometime after September, 2008 following
 Visit <http://radiok.info/blog/category/register-plus-redux/> for all information Register Plus Redux related
 
 = Register, Signup, what's the difference? =
-Historically, users registered for WordPress sites.  WordPress MU (__M__ulti__u__ser) introduced the signup process which is conceptually similar to registration, but also very different, especially from a coding perspective.  WordPress MU has since been merged into WordPress as the Multisite (a/k/a WordPress MS) feature.  The actions, filters and, overall request lifecycle are dramatically different, as is the presentation.  The registration and signup pages are different in every way, even though they have similar intentions.  As such, developers must make the distinction between registration and signup.
+Historically, users registered for WordPress sites.  WordPress MU (**M**ulti**u**ser) introduced the signup process which is conceptually similar to registration, but also very different, especially from a coding perspective.  WordPress MU has since been merged into WordPress as the Multisite (a/k/a WordPress MS) feature.  The actions, filters and, overall request lifecycle are dramatically different, as is the presentation.  The registration and signup pages are different in every way, even though they have similar intentions.  As such, developers must make the distinction between registration and signup.
 
 = Why should I Network Activate vs activating on individual blogs? =
-This question is specific to WordPress with Networks, or WordPress Multisite, whichever terminology tickles your fancy. If you don't know what either means, you most likely don't need to concern yourself either way. After much trial and error, I learned that due to an odd executive decision in WordPress core, site plugins are not loaded during user or blog activation (see WordPress Trac [#18278](http://core.trac.wordpress.org/ticket/18278) or [#23197](http://core.trac.wordpress.org/ticket/23197)), however, network plugins, that is plugins "Network Activated" are loaded. This behavior prevents Register Plus Redux from restoring information stored after a user signs up when only activated at the site level. There's nothing forcing you to Network Activate, however, features involving adding additional fields to the signup page will not function properly. This mandate does create some odd situations in which you may have one site, or a subset sites, in which you wish to utilize Register Plus Redux, however all your site will have access to its functionality. This is a decision Network Administrators must make.
+This question is specific to WordPress with Networks, or WordPress Multisite, whichever terminology tickles your fancy. If you don't know what either means, you most likely don't need to concern yourself either way. After much trial and error, I learned that due to an odd executive decision in WordPress core, site plugins are not loaded during user or blog activation (see WordPress Trac [#18278](http://core.trac.wordpress.org/ticket/18278) or [#23197](http://core.trac.wordpress.org/ticket/23197)), however, network plugins, that is plugins "Network Activated" are loaded. This behavior prevents Register Plus Redux from restoring information stored after a user signs up when only activated at the site level. There's nothing forcing you to Network Activate, however, features involving adding additional fields to the signup page will not function properly. This mandate does create some odd situations in which you may have one site, or a subset sites, in which you wish to utilize Register Plus Redux, however all your sites will have access to its functionality. This is a decision Network Administrators must make.
 
 = Didn't Register Plus have a CAPTCHA feature? How do I add a CAPTCHA to the registration form? =
 Register Plus offered two different CAPTCHA methods, a simple random CAPTCHA and reCAPTCHA. The simple one randomly created a 5-character sequence on a background image with two random lines drawn across the image, this CAPTCHA would be very easy for any OCR program to decipher as the characters were not modified in anyway and contrast was high. reCAPTCHA is a great idea, but there is another plugin, [WP-reCAPTCHA](http://wordpress.org/extend/plugins/wp-recaptcha/) endorsed by the reCAPTCHA developers that can be used to add reCAPTCHA to the registration page. I endorse the use of that plugin for that purpose.
@@ -92,8 +93,16 @@ Register Plus did have a feature that allowed multiple users to register with th
 = I do not want users to go to the Dashboard after logging in. How do I redirect users after they login? =
 This isn't quite a registration issue, but I can see how the line blurs since A) Redux does have configuration options for the Login screen, and B) Redux has a configuration for redirect after registration. I briefly considering programming this feature, but [Peter's Login Redirect](http://wordpress.org/extend/plugins/peters-login-redirect/) does everything I could do and so much more. I endorse the use of that plugin for this purpose.
 
-= Why does Register Plus Redux require WordPress 3.2+ =
-Prior to WordPress 3.2, WordPress required PHP 4, version 3.2 bumped up the requirement to PHP 5 (specifically PHP 5.2).  Register Plus Redux has been built specifically against PHP 5, functions and features may not function properly in PHP 4 or older.
+= Why does Register Plus Redux require WordPress 3.3+ =
+Prior to WordPress 3.2, WordPress required PHP 4, version 3.2 bumped up the requirement to PHP 5 (specifically PHP 5.2).  Register Plus Redux has been built specifically against PHP 5, functions and features may not function properly in PHP 4 or older.  WordPress 3.3 included the full jQuery UI library, previously Register Plus Redux had to include its own copy for the Datepicker widget.
+
+= Why does Register Plus Redux require WordPress 3.5+ =
+Register Plus Redux uses WP_User_Query meta queries which was a developer feature added in WordPress 3.5.
+
+= Can you add a feature to change the width of the Registration Form? / How you change the width of the Registration Form? =
+You can use the Custom Register CSS (found in Register Plus Redux's settings) to specify the width of the Registration form via CSS.  Specifically the code follows:
+`#login { width: 500px; }`
+This is a neat feature that could be expressed explicitly in a Register Plus Redux setting, but considering the simplicity of the solution I have determined that to be unnecessary.
 
 = Things to Keep in Mind =
 Really more for me than you, but who's nitpicking.
@@ -108,6 +117,94 @@ HTML attributes should go in the following order name -> id -> class
 4. Unverified User Management
 
 == Changelog ==
+
+= 3.9.11 =
+September 11, 2014 by radiok
+
+* Fixed regression in Email Address as Username caused by changes in WordPress 4.0 to default modifiers (#22234, r28511)
+* Bumped the "Requires at least" minimum WordPress version to 3.5 following bug reported by taral <http://wordpress.org/support/topic/fatal-error-after-upgrading-to-3910>
+
+= 3.9.10 =
+May 14, 2013 by radiok
+
+* Fixed bug, under Wordpress for Networks, super_admin users could not login
+* Added pl_PL translation
+
+= 3.9.9 =
+May 8, 2013 by radiok
+
+* Fixed bug, upon verification usermeta was purging when changing user role from unverified to default role
+* Fixed regression from 3.9, show Datepicker
+* Fixed bug, when both email and admin verification were enabled, admin verification was not obeyed after completing email verification
+* Delete Wordpress option register_plus_redux_last_activated on deactivation or uninstall
+* New Wordpress option, register_plus_redux_version to assist in debugging
+* Moved scripts to footer of page to improve rendering
+
+= 3.9.8 =
+March 3, 2013 by radiok
+
+* Regression, PHP 5.3+ required for static keywords, reverting to static methods
+* Added sanity checks to allow default behavior if Redux activation fails
+* New Wordpress option, register_plus_redux_last_activated to assist in debugging
+
+= 3.9.7 =
+March 2, 2013 by radiok
+
+* Regression, PHP 5.3+ required for class constants, reverting to global constant
+
+= 3.9.6 =
+March 2, 2013 by radiok
+
+* Added ability to disable user email verification on WordPress Multisite
+* Significant re-factor of code base, specifically involving explicit conversions
+* Improved Unverified Users page with consistent behavior and added functionality
+* Added new 'rpr_unverified' (Unverified) user role
+* Added new 'rpr_can_login' capability
+* Converted 'unverified_*' users to Unverified user role
+* Added activation/deactivation/uninstall functions, specifically for new role purposes
+* Removed filter_login_message hack, use action to determine behavior following registration
+* Use Default CSS now adds ID's to username and e-mail's label and paragraph element on registration form
+
+= 3.9.5 =
+February 19, 2013 by radiok
+
+* Added user_id parameter to rpr_signup_complete action
+* Fixed bug, could not delete users from unverified users page
+* Fixed CSS on additional checkbox and radio fields on signup page
+* Fixed bug with signup not validating due to bad $pagenow check
+* Fixed bug, %user_login% was not replaced properly in messages following email verification
+
+= 3.9.4 =
+February 15, 2013 by radiok
+
+* Created action, 'rpr_signup_complete' which occurs after any verification in place and after user data is committed but prior to messages being sent out
+* Misc. bug fixes, nothing significant
+* Improved CSS on various elements
+
+= 3.9.3 =
+February 7, 2013 by radiok
+
+* Added new feature dynamic keywords for custom messages, %=keyword% will search user_meta for keyword and replace
+* Fixed bug with custom admin messages
+
+= 3.9.2 =
+February 6, 2013 by radiok
+
+* Improved initial 'meta_key' definition
+* Fixed bug with Network Activation warning which prevented any activation on Wordpress Multisite
+* Fixed some broken jQuery
+* Fixed regression from v3.7.3 introduced in v3.9 in the way that additional select, checkbox, and radio field values were stored
+
+= 3.9.1 =
+February 5, 2013 by radiok
+
+* Removed hack to filter random passwords in messages
+* Fixed malformed labels for additional fields on signup page
+* Fixed bug with additional checkbox fields on registration page
+* Fixed bug with saving additional checkbox fields on profile page
+* Fixed bug with clearing additional fields on profile page
+* Updated javascript to be more compatible with jQuery 1.9
+
 = 3.9 =
 January 21, 2012 by radiok
 
@@ -353,42 +450,42 @@ September 13, 2010 by radiok
 * Started renaming settings
 
 = 3.5.1 =
-July 29, 2008 by Skullbit
+July 29, 2008 by skullbit
 
 * Added Logo link to login page
 
 = 3.5 =
-July 29, 2008 by Skullbit
+July 29, 2008 by skullbit
 
 * Changed Logo to link to site home page instead of wordpress.org and set the Logo title to "blogname - blogdescription"
 * Added Date Field ability for User Defined Fields - calendar pop-up on click with customization abilities
 
 = 3.4.1 =
-July 28, 2008 by Skullbit
+July 28, 2008 by skullbit
 
 * Fixed admin verification error
 
 = 3.4 =
-July 25, 2008 by Skullbit
+July 25, 2008 by skullbit
 
 * Fixed verification email sending errors
 * Fixed Custom Fields Extra Options duplications
 * Added Custom CSS option for login and register pages
 
 = 3.3 =
-July 23, 2008 by Skullbit
+July 23, 2008 by skullbit
 
 * Updated conflict warning error to only appear on the RegPlus options page only.
 
 = 3.2 =
-July 22, 2008 by Skullbit
+July 22, 2008 by skullbit
 
 * Fixed Custom Field Checkbox saving issue
 * Additional field types available for Custom Fields.
 * Password Meter is now optional and text is editable within options page
 
 = 3.1 =
-July 8, 2008 by Skullbit
+July 8, 2008 by skullbit
 
 * Added Logo Removal Option
 * Updated Email Validation text after registering
@@ -397,19 +494,19 @@ July 8, 2008 by Skullbit
 * Fixed bad version control code
 
 = 3.0.2 =
-June 23, 2008 by Skullbit
+June 23, 2008 by skullbit
 
 * Updated Email notifications to use a filter to replace the From Name and Email address
 
 = 3.0.1 =
-June 19, 2008 by Skullbit
+June 19, 2008 by skullbit
 
 * Added more localization files
 * Added documentation for auto-complete queries
 * Fixed Admin notification email to now actually really go to the administrator
 
 = 3.0 =
-June 18, 2008 by Skullbit
+June 18, 2008 by skullbit
 
 * Added localization to password strength text
 * Added stripslashes to missing areas
@@ -419,19 +516,19 @@ June 18, 2008 by Skullbit
 * Added ability to email all user data in notification emails
 
 = 2.9 =
-June 10, 2008 by Skullbit
+June 10, 2008 by skullbit
 
 * Fixed foreach error for custom invite codes
 * Custom logos can now be any size
 * Login fields are now hidden after registration if email verification is enabled.
 
 = 2.8 =
-June 9, 2008 by Skullbit
+June 9, 2008 by skullbit
 
 * Fixed Fatal Error on Options Page
 
 = 2.7 =
-June 8, 2008 by Skullbit
+June 8, 2008 by skullbit
 
 * Added full customization option to User Registration Email and Admin Email.
 * Added ability to disable Admin notification email.
@@ -439,24 +536,24 @@ June 8, 2008 by Skullbit
 * Added Custom Logo upload for replacing WP Logo on register & login pages
 
 = 2.6 =
-May 15, 2008 by Skullbit
+May 15, 2008 by skullbit
 
 * Fixed error on ranpass function.
 
 = 2.5 =
-May 14, 2008 by Skullbit
+May 14, 2008 by skullbit
 
 * Fixed registration password email to work when user set password is disabled
 
 = 2.4 =
-May 13, 2008 by Skullbit
+May 13, 2008 by skullbit
 
 * Fixed localization issue
 * Added License Agreement & Privacy Policy plus user defined titles and agree text for these and the Disclaimer
 * Fixed Javascript error in IE
 
 = 2.3 =
-May 12, 2008 by Skullbit
+May 12, 2008 by skullbit
 
 * Added reCAPTCHA support
 * Fixed PHP short-code issue
@@ -464,13 +561,13 @@ May 12, 2008 by Skullbit
 * Added ability to customize the registration email's From address, Subject and add your own message to the email body.
 
 = 2.2 =
-April 27, 2008 by Skullbit
+April 27, 2008 by skullbit
 
 * Fixed About Us Slashes from showing with apostrophes
 * Modified the Captcha code to hopefully fix some compatibility issues
 
 = 2.1 =
-April 26, 2008 by Skullbit
+April 26, 2008 by skullbit
 
 * Fixed Admin Registration Password issue
 * Added Dashboard Widget for showing invitation code tracking
@@ -478,7 +575,7 @@ April 26, 2008 by Skullbit
 * Unvalidated registrations are unable to login and are deleted after a set grace period
 
 = 2.0 =
-April 20, 2008 by Skullbit
+April 20, 2008 by skullbit
 
 * Added Profile Fields
 * Added Multiple Invitation Codes
@@ -486,28 +583,37 @@ April 20, 2008 by Skullbit
 * Added ability to ignore duplicate email registrations
 
 = 1.2 =
-April 13, 2008 by Skullbit
+April 13, 2008 by skullbit
 
 * Altered Options saving and retrievals for less database interactions
 * Added Disclaimer Feature
 * Allowed register fields to retain values on submission if there is an error.
 
 = 1.1 =
-April 10 2008 by Skullbit
+April 10 2008 by skullbit
 
 * Fixed Invitation Code from displaying when disabled.
 * Added Captcha Feature
 
 == Upgrade Notice ==
 
-= 3.6 =
+= 3.6.0 =
 First stable release by radiok with bugfixes to issues found in 3.5.1
 
 = 3.7.0 =
 Major change to avoid conflicts
 
 = 3.7.2 =
-New featues, can use email address as username and validate text fields with regex
+New features, can use email address as username and validate text fields with regex
 
-= 3.7.4 =
+= 3.9.0 =
 Notice: Custom CSS on Checkbox and Radio fields may need to be reviewed
+
+= 3.9.3 =
+New feature, meta keywords for custom messages, %=keyword% will search user_meta for keyword and replace
+
+= 3.9.5 =
+WordPress Multisite users please update, signup pages were not validating, any information entered was accepted, also Email as Username was not functioning, same root cause
+
+= 3.9.8 =
+Added new role, Unverified, and new capability, rpr_can_login, unverified users now take advantage of these, change may be jarring for long time users

@@ -1,28 +1,36 @@
 <?php
 if ( !class_exists( 'RPR_Activate' ) ) {
 	class RPR_Activate {
-		function __construct() {
+		public /*.void.*/ function __construct() {
+			//add_action( 'init', array( $this, 'rpr_activate_init' ), 10, 1 );
 			add_filter( 'random_password', array( $this, 'rpr_activate_filter_random_password' ), 10, 1 ); // Replace random password with user set password
 			add_filter( 'wpmu_welcome_user_notification', array( $this, 'rpr_filter_wpmu_welcome_user_notification' ), 10, 3 );
+			add_filter( 'wpmu_welcome_notification', array( $this, 'rpr_filter_wpmu_welcome_notification' ), 10, 5 );
 			add_action( 'wpmu_activate_user', array( $this, 'rpr_wpmu_activate_user' ), 10, 3 ); // Restore metadata to activated user's profile
-			//add_action( 'wpmu_activate_blog', array( $this, 'rpr_wpmu_activate_blog' ), 10, 5 );
+			add_action( 'wpmu_activate_blog', array( $this, 'rpr_wpmu_activate_blog' ), 10, 5 );
 		}
 
-		function rpr_activate_filter_random_password( $password ) {
+		public /*.void.*/ function rpr_activate_init() {
+			global $pagenow;
+			if ( 'wp-activate.php' === $pagenow ) {
+				trigger_error( sprintf( __( 'Register Plus Redux DEBUG: rpr_activate_init from %s', 'register-plus-redux' ), $pagenow ) );
+			}
+		}
+
+		public /*.string.*/ function rpr_activate_filter_random_password( /*.string.*/ $password ) {
 			global $register_plus_redux;
 			global $pagenow;
-			if ( $pagenow == 'wp-activate.php' && $register_plus_redux->rpr_get_option( 'user_set_password' ) == TRUE ) {
-				$key = isset( $_POST['key'] ) ? $_POST['key'] : isset( $_GET['key'] ) ? $_GET['key'] : '';
+			if ( 'wp-activate.php' === $pagenow && '1' === $register_plus_redux->rpr_get_option( 'user_set_password' ) ) {
+				$key = isset( $_REQUEST['key'] ) ? (string) $_REQUEST['key'] : '';
 				if ( !empty( $key ) ) {
 					global $wpdb;
-					$signup = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->signups WHERE activation_key = %s;", $key ) );
+					/*.object.*/ $signup = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->signups WHERE activation_key = %s;", $key ) );
 					if ( !empty( $signup ) ) {
-						$meta = unserialize( $signup->meta );
-						if ( is_array( $meta ) && array_key_exists( 'password', $meta ) && !empty( $meta['password'] ) ) {
-							$password = $meta['password'];
-							unset( $meta['password'] );
-							$meta = serialize( $meta );
-							$wpdb->update( $wpdb->signups, array( 'meta' => $meta ), array( 'activation_key' => $key ) );
+						/*.array[string]string.*/ $meta = maybe_unserialize( $signup->meta );
+						if ( is_array( $meta ) && isset( $meta['pass1'] ) && !empty( $meta['pass1'] ) ) {
+							$password = $meta['pass1'];
+							unset( $meta['pass1'] );
+							$wpdb->update( $wpdb->signups, array( 'meta' => serialize( $meta ) ), array( 'activation_key' => $key ) );
 						}
 					}
 				}
@@ -30,24 +38,25 @@ if ( !class_exists( 'RPR_Activate' ) ) {
 			return $password;
 		}
 
-		function rpr_filter_wpmu_welcome_user_notification( $user_id, $password, $meta ) {
+		public /*.bool.*/ function rpr_filter_wpmu_welcome_user_notification( /*.int.*/ $user_id, /*.string.*/ $password, /*.array[]mixed.*/ $meta ) {
 			global $register_plus_redux;
-			if ( $register_plus_redux->rpr_get_option( 'disable_user_message_registered' ) == TRUE ) return FALSE;
-			else return TRUE;
+			if ( '1' === $register_plus_redux->rpr_get_option( 'disable_user_message_registered' ) ) return FALSE;
+			return TRUE;
 		}
 
-		function rpr_wpmu_activate_user( $user_id, $password, $meta ) {
+		public /*.bool.*/ function rpr_filter_wpmu_welcome_notification( /*.int.*/ $blog_id, /*.int.*/ $user_id, /*.string.*/ $password, /*.string.*/ $title, /*.array[]mixed.*/ $meta ) {
+			return $this->rpr_filter_wpmu_welcome_user_notification( $user_id, $password, $meta );
+		}
+
+		public /*.void.*/ function rpr_wpmu_activate_user( /*.int.*/ $user_id, /*.string.*/ $password, /*.array[]mixed.*/ $meta ) {
 			global $register_plus_redux;
+			global $wpdb;
 
 			//TODO: Not the most elegant solution, it would be better to interupt the activation and keep the data in the signups table with a flag to alert admin to complete activation			
-			if ( $register_plus_redux->rpr_get_option( 'verify_user_admin' ) == TRUE ) {
-				$user_info = get_userdata( $user_id );
-				update_user_meta( $user_id, 'stored_user_login', sanitize_text_field( $user_info->user_login ) );
-				update_user_meta( $user_id, 'stored_user_password', sanitize_text_field( $plaintext_pass ) );
-				$temp_user_login = 'unverified_' . wp_generate_password( 7, FALSE );
-				//global $wpdb;
-				//$wpdb->update( $wpdb->users, array( 'user_login' => $temp_user_login ), array( 'ID' => $user_id ) );
-				wp_update_user( array( 'ID' => $user_id, 'user_login' => $temp_user_login ) );
+			if ( '1' === $register_plus_redux->rpr_get_option( 'verify_user_admin' ) ) {
+				update_user_meta( $user_id, 'stored_user_password', sanitize_text_field( $password ) );
+				$user = get_userdata( $user_id );
+				$user->set_role( 'rpr_unverified' );
 			}
 
 			if ( is_array( $register_plus_redux->rpr_get_option( 'show_fields' ) ) && in_array( 'first_name', $register_plus_redux->rpr_get_option( 'show_fields' ) ) && !empty( $meta['first_name'] ) ) update_user_meta( $user_id, 'first_name', sanitize_text_field( $meta['first_name'] ) );
@@ -63,36 +72,60 @@ if ( !class_exists( 'RPR_Activate' ) ) {
 			if ( is_array( $register_plus_redux->rpr_get_option( 'show_fields' ) ) && in_array( 'about', $register_plus_redux->rpr_get_option( 'show_fields' ) ) && !empty( $meta['description'] ) ) update_user_meta( $user_id, 'description', wp_filter_kses( $meta['description'] ) );
 
 			$redux_usermeta = get_option( 'register_plus_redux_usermeta-rv2' );
-			if ( !is_array( $redux_usermeta ) ) $redux_usermeta = array();
-			foreach ( $redux_usermeta as $index => $meta_field ) {
-				if ( !empty( $meta_field['show_on_registration'] ) ) {
-					if ( !empty( $meta[$meta_field['meta_key']] ) ) $register_plus_redux->rpr_update_user_meta( $user_id, $meta_field, $meta[$meta_field['meta_key']] );
+			if ( is_array( $redux_usermeta ) ) {
+				foreach ( $redux_usermeta as $meta_field ) {
+					if ( '1' === $meta_field['show_on_registration'] ) {
+						if ( 'checkbox' === $meta_field['display'] ) {
+							$meta_value = isset( $meta[ (string) $meta_field['meta_key']] ) ? (array) $meta[ (string) $meta_field['meta_key']] : '';
+						}
+						else if ( 'terms' === $meta_field['display'] ) {
+							$meta_value = isset( $meta[ (string) $meta_field['meta_key']] ) ? (string) $meta[ (string) $meta_field['meta_key']] : 'N';
+						}
+						else {
+							$meta_value = isset( $meta[ (string) $meta_field['meta_key']] ) ? (string) $meta[ (string) $meta_field['meta_key']] : '';
+						}
+						$register_plus_redux->rpr_update_user_meta( $user_id, $meta_field, $meta_value );
+					}
 				}
 			}
 
-			if ( $register_plus_redux->rpr_get_option( 'enable_invitation_code' ) == TRUE && !empty( $meta['invitation_code'] ) ) update_user_meta( $user_id, 'invitation_code', sanitize_text_field( $meta['invitation_code'] ) );
+			if ( '1' === $register_plus_redux->rpr_get_option( 'enable_invitation_code' ) && !empty( $meta['invitation_code'] ) ) update_user_meta( $user_id, 'invitation_code', sanitize_text_field( $meta['invitation_code'] ) );
 
 			/* filter_random_password replaces the random password with the password stored in meta
-			if ( $register_plus_redux->rpr_get_option( 'user_set_password' ) == TRUE && !empty( $meta['password'] ) ) {
-				$password = sanitize_text_field( $meta['password'] );
+			if ( '1' === $register_plus_redux->rpr_get_option( 'user_set_password' ) && !empty( $meta['pass1'] ) ) {
+				$password = sanitize_text_field( $meta['pass1'] );
 				update_user_option( $user_id, 'default_password_nag', FALSE, TRUE );
 				wp_set_password( $password, $user_id );
 			}
 			*/
 
-			// TODO: Verify autologin works
-			if ( $register_plus_redux->rpr_get_option( 'autologin_user' ) == TRUE && $register_plus_redux->rpr_get_option( 'verify_user_email' ) == FALSE && $register_plus_redux->rpr_get_option( 'verify_user_admin' ) == FALSE ) {
-				$user_info = get_userdata( $user_id );
-				$credentials['user_login'] = $user_info->user_login;
-				$credentials['user_password'] = $password;
-				$credentials['remember'] = FALSE;
-				$user = wp_signon( $credentials, FALSE ); 
-				//wp_redirect( admin_url() );
-				//exit();
+			// TODO: Eh, semi-autologin works
+			if ( '1' === $register_plus_redux->rpr_get_option( 'autologin_user' ) && '1' !== $register_plus_redux->rpr_get_option( 'verify_user_email' ) && '1' !== $register_plus_redux->rpr_get_option( 'verify_user_admin' ) ) {
+				$user = get_userdata( $user_id );
+				?>
+				<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+				<input type="hidden" name="log" value="<?php echo $user->user_login; ?>">
+				<input type="hidden" name="pwd" value="<?php echo $password; ?>">
+				</form>
+				
+				<script type="text/javascript">
+				jQuery(document).ready(function() {
+					jQuery(document).on("click", "a:contains('Log in')", function(eventObject) {
+						eventObject.preventDefault();
+						//jQuery.post("<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>", { log: "<?php echo $user->user_login; ?>", pwd: "<?php echo $password; ?>" } );
+						//window.location.assign("http://radiok.info/wp-admin/");
+						jQuery("#loginform").submit();
+					});
+				});
+				window.onbeforeunload = function(e) {
+					jQuery.post("<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>", { log: "<?php echo $user->user_login; ?>", pwd: "<?php echo $password; ?>" } );
+				};
+				</script>
+				<?php
 			}
 		}
 
-		function rpr_wpmu_activate_blog( $blog_id, $user_id, $password, $signup, $meta ) {
+		public /*.void.*/ function rpr_wpmu_activate_blog( /*.int.*/ $blog_id, /*.int.*/ $user_id, /*.string.*/ $password, /*.string.*/ $title, /*.array[]mixed.*/ $meta ) {
 			$this->rpr_wpmu_activate_user( $user_id, $password, $meta );
 		}
 	}
