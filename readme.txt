@@ -46,7 +46,7 @@ Enhancements to registration include:
 
 Register Plus Redux was forked from Register Plus, developed by skullbit, after that plugin was abandoned in 2008. Register Plus Redux resolves many known bugs and added compatibility with WordPress 3.0+.
 
-Versions 12 and later of Register Plus Redux include the optional functionality of ReadyGraph.  If they choose to do so, plugin users can enable ReadyGraph through Register Plus Redux.  When ReadyGraph is activated, a set of growth features, which include: a signup pop-up form, invite/sharing capabilities and automated email re-engagement campaigns are initiated for the purpose of increasing the rate of user-growth.  The following information provides additional details on these features and the benefits that they deliver.
+Versions 4.0 and later of Register Plus Redux include the optional functionality of ReadyGraph.  If they choose to do so, plugin users can enable ReadyGraph through Register Plus Redux.  When ReadyGraph is activated, a set of growth features, which include: a signup pop-up form, invite/sharing capabilities and automated email re-engagement campaigns are initiated for the purpose of increasing the rate of user-growth.  The following information provides additional details on these features and the benefits that they deliver.
 
 = ReadyGraph App =
 ReadyGraph is a system that automates the growth of your site’s userbase. It is optimized to deliver audience growth and motivate users to consistently revisit your site.
