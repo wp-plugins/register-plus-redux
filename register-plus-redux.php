@@ -5,7 +5,7 @@ Plugin Name: Register Plus Redux
 Author URI: http://radiok.info/
 Plugin URI: http://radiok.info/blog/category/register-plus-redux/
 Description: Enhances the user registration process with complete customization and additional administration options.
-Version: 4.0.3
+Version: 4.0.4
 Text Domain: register-plus-redux
 Domain Path: /languages
 */
@@ -26,7 +26,7 @@ Domain Path: /languages
 // TODO: Enhancement- Alter admin pages to match registration/signup
 // TODO: Enhancement- Widget is lame/near worthless
 
-define( 'RPR_VERSION', '4.0.3' );
+define( 'RPR_VERSION', '4.0.4' );
 define( 'RPR_ACTIVATION_REQUIRED', '3.9.6' );
 
 if ( !class_exists( 'Register_Plus_Redux' ) ) {
@@ -618,41 +618,46 @@ if ( !class_exists( 'Register_Plus_Redux' ) ) {
 		}
 	}
 }
-if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' ) ) {
-		include "readygraph-extension.php";
+
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' ) ) {
+	include_once( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' );
 }
-function rpr_delete_rg_options() {
-	delete_option('readygraph_access_token');
-	delete_option('readygraph_application_id');
-	delete_option('readygraph_refresh_token');
-	delete_option('readygraph_email');
-	delete_option('readygraph_settings');
-	delete_option('readygraph_delay');
-	delete_option('readygraph_enable_sidebar');
-	delete_option('readygraph_auto_select_all');
-	delete_option('readygraph_enable_notification');
-	delete_option('readygraph_enable_branding');
-	delete_option('readygraph_send_blog_updates');
-	delete_option('readygraph_send_real_time_post_updates');
-	delete_option('readygraph_popup_template');
+
+/*.void.*/ function rpr_delete_rg_options() {
+	delete_option( 'readygraph_access_token' );
+	delete_option( 'readygraph_application_id' );
+	delete_option( 'readygraph_refresh_token' );
+	delete_option( 'readygraph_email' );
+	delete_option( 'readygraph_settings' );
+	delete_option( 'readygraph_delay' );
+	delete_option( 'readygraph_enable_sidebar' );
+	delete_option( 'readygraph_auto_select_all' );
+	delete_option( 'readygraph_enable_notification' );
+	delete_option( 'readygraph_enable_branding' );
+	delete_option( 'readygraph_send_blog_updates' );
+	delete_option( 'readygraph_send_real_time_post_updates' );
+	delete_option( 'readygraph_popup_template' );
 }
-function rpr_rrmdir($dir) {
-	  if (is_dir($dir)) {
-		$objects = scandir($dir);
-		foreach ($objects as $object) {
-		  if ($object != "." && $object != "..") {
-			if (filetype($dir."/".$object) == "dir") 
-			   rpr_rrmdir($dir."/".$object); 
-			else unlink   ($dir."/".$object);
-		  }
+
+/*.void.*/ function rpr_rrmdir( /*.string.*/ $dir ) {
+	$dir = untrailingslashit( $dir ); //not essential, but technically correct- radiok
+	if ( is_dir( $dir ) ) {
+		/*.array[]string.*/ $objects = scandir( $dir );
+		foreach ( $objects as $object ) {
+			if ( $object !== '.' && $object !== '..' ) {
+				if ( is_dir( $dir . '/' . $object ) ) { // use boolean function over a filetype equality statement- radiok
+					rpr_rrmdir( $dir . '/' . $object ); 
+				}
+				else {
+					unlink( $dir . '/' . $object );
+				}
+			}
 		}
-		reset($objects);
-		rmdir($dir);
-	  }
-	  $del_url = plugin_dir_path( __FILE__ );
-	  unlink($del_url.'/readygraph-extension.php');
-	 $setting_url="admin.php?page=register-plus-redux";
-	  echo'<script> window.location="'.admin_url($setting_url).'"; </script> ';
+		// reset( $objects ); // when foreach first starts executing, the internal array pointer is automatically reset to the first element of the array [http://php.net/manual/en/control-structures.foreach.php]- radiok
+		rmdir( $dir );
+	}
+	unlink( plugin_dir_path( __FILE__ ) . 'readygraph-extension.php' );
+	echo '<script>window.location="' . admin_url( 'admin.php?page=register-plus-redux' ) . '";</script>';
 }
 
 // include secondary php files outside of object otherwise $register_plus_redux will not be an instance yet
