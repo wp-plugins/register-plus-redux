@@ -30,8 +30,8 @@ rpr_rrmdir($dir);
 	global $main_plugin_title;
 	if (!get_option('readygraph_access_token') || strlen(get_option('readygraph_access_token')) <= 0) {
 	//redirect to main page
-	$current_url = explode("&", $_SERVER['REQUEST_URI']); 
-	echo '<script>window.location.replace("'.$current_url[0].'");</script>';
+	$current_url = "admin.php?page=readygraph-app"; 
+	echo '<script>window.location.replace("'.$current_url.'");</script>';
 	}
 	else {
 	if (isset($_POST["readygraph_access_token"])) update_option('readygraph_access_token', $_POST["readygraph_access_token"]);
@@ -167,7 +167,7 @@ If you have questions or concerns contact us anytime at <a href="mailto:info@rea
   </li>
   <li>Basic Settings
     <ul>
-		<li><a href="#">Site Profile</a></li>
+		<li><a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=site-profile">Site Profile</a></li>
 		<li><a href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=readygraph-app&ac=feature-settings">Feature Settings</a></li>
 	</ul>
   </li>

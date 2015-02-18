@@ -80,6 +80,7 @@ function rpr_post_updated_send_email( $post_id ) {
 	$post_title = get_the_title( $post_id );
 	$post_url = get_permalink( $post_id );
 	$post_content = get_post($post_id);
+	$url = 'http://readygraph.com/api/v1/post.json/';
 	if (get_option('readygraph_send_real_time_post_updates')=='true'){
 	$url = 'http://readygraph.com/api/v1/post.json/';
 	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
@@ -102,5 +103,42 @@ function rpr_post_updated_send_email( $post_id ) {
 	}
 
 }
-add_action( 'publish_post', 'rpr_post_updated_send_email' );
-add_action( 'publish_page', 'rpr_post_updated_send_email' );
+add_action('future_to_publish','s2_post_updated_send_email');
+add_action('new_to_publish','s2_post_updated_send_email');
+add_action('draft_to_publish','s2_post_updated_send_email');
+// add_action( 'publish_post', 'rpr_post_updated_send_email' );
+// add_action( 'publish_page', 'rpr_post_updated_send_email' );
+
+
+if(get_option('rpr_wordpress_sync_users')){}
+else{
+add_action('plugins_loaded', 'rg_rpr_get_version');
+}
+function rg_rpr_get_version() {
+	if(get_option('rpr_wordpress_sync_users') && get_option('rpr_wordpress_sync_users') == "true")
+	{}
+	else {
+		if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+        rpr_wordpress_sync_users(get_option('readygraph_application_id'));
+		}
+    }
+}
+function rpr_wordpress_sync_users( $app_id ){
+	global $wpdb;
+   	$query = "SELECT email as email, date as user_date FROM {$wpdb->prefix}users ";
+	$rpr_users = $wpdb->get_results($query);
+	$emails = "";
+	$dates = "";
+	$count = 0;
+	$count = mysql_num_rows($rpr_users);
+	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=wp_user_synced&app_id=$app_id&count=$count" );
+	foreach($rpr_users as $user) {
+		$emails .= $user->email . ","; 
+		$dates .= $user->user_date . ",";
+	}
+	$url = 'https://readygraph.com/api/v1/wordpress-sync-enduser/';
+	$response = wp_remote_post($url, array( 'body' => array('app_id' => $app_id, 'email' => rtrim($emails, ", "), 'user_registered' => rtrim($dates, ", "))));
+	update_option('rpr_wordpress_sync_users',"true");
+	remove_action('plugins_loaded', 'rg_rpr_get_version');
+}
+?>
