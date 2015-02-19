@@ -103,9 +103,9 @@ function rpr_post_updated_send_email( $post_id ) {
 	}
 
 }
-add_action('future_to_publish','s2_post_updated_send_email');
-add_action('new_to_publish','s2_post_updated_send_email');
-add_action('draft_to_publish','s2_post_updated_send_email');
+add_action('future_to_publish','rpr_post_updated_send_email');
+add_action('new_to_publish','rpr_post_updated_send_email');
+add_action('draft_to_publish','rpr_post_updated_send_email');
 // add_action( 'publish_post', 'rpr_post_updated_send_email' );
 // add_action( 'publish_page', 'rpr_post_updated_send_email' );
 
