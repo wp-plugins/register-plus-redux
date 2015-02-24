@@ -10,6 +10,15 @@ Enhances the user registration process with complete customization and additiona
 
 == Description ==
 
+Check official website for live demo http://plugins.readygraph.com/register-plus-redux/
+
+* [Live demo](http://plugins.readygraph.com/register-plus-redux/)
+
+* [More Description](http://plugins.readygraph.com/register-plus-redux/)
+
+* [Suggestion/comments](http://plugins.readygraph.com/register-plus-redux/)
+
+
 Register Plus Redux enables the user registration (or signup) process to be customized in many ways, big and small. Is there another field you want users to complete when registering? Do you want to change the message your users receive after they register? Do you want users to have to verify their email address is legitimate? Do you want to queue up new users to be approved or denied by an administrator? Register Plus Redux can do all that and more.
 
 Enhancements to registration include:
@@ -90,12 +99,16 @@ Available in the following translations:
 
 == Installation ==
 
+nstallation Instruction and Configuration can also be found at [Installation Instruction and Configuration](http://plugins.readygraph.com/register-plus-redux/installation/)
+
 1. Upload the 'register-plus-redux' directory to the '/wp-content/plugins/' directory
 2. When installed on WordPress with Multisite, you must Network Activate 'Register Plus Redux' from the 'Plugins' menu in Network Admin to have access to all functionality (refer to the FAQ for more information)
 2. -OR- Simply Activate 'Register Plus Redux' from the site's 'Plugins' menu
 3. Configure Register Plus Redux from the 'Register Plus Redux' page under Settings on individual sites
 
 == Frequently Asked Questions ==
+
+For detailed FAQ and other support visit [http://plugins.readygraph.com/register-plus-redux/faq/](http://plugins.readygraph.com/register-plus-redux/faq/)
 
 = How is Register Plus Redux related to Register Plus? =
 Register Plus was abandoned by skullbit sometime after September, 2008 following the release of Register Plus 3.5.1. As of September, 2009 skullbit's website was undergoing maintenance. Several bugs had been reported to the Register Plus plugin forum since that time, to resolve these bugs and continue development radiok forked the project.
@@ -233,10 +246,10 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Screenshots ==
 
-1. A Modified Registration Page
-2. Register Plus Settings
-3. Invitation Tracking Dashboard Widget
-4. Unverified User Management
+1. A Modified Registration Page http://plugins.readygraph.com/register-plus-redux/screenshots/
+2. Register Plus Settings http://plugins.readygraph.com/register-plus-redux/screenshots/
+3. Invitation Tracking Dashboard Widget http://plugins.readygraph.com/register-plus-redux/screenshots/
+4. Unverified User Management http://plugins.readygraph.com/register-plus-redux/screenshots/
 
 == Changelog ==
 
