@@ -11,8 +11,11 @@ Enhances the user registration process with complete customization and additiona
 == Description ==
 
 Check official website for live demo http://plugins.readygraph.com/register-plus-redux/
+
 * [Live demo](http://plugins.readygraph.com/register-plus-redux/)
+
 * [More Description](http://plugins.readygraph.com/register-plus-redux/)
+
 * [Suggestion/comments](http://plugins.readygraph.com/register-plus-redux/)
 
 
