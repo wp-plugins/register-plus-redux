@@ -79,22 +79,21 @@ function rpr_post_updated_send_email( $post_id ) {
 
 	$post_title = get_the_title( $post_id );
 	$post_url = get_permalink( $post_id );
+	$post_image = wp_get_attachment_url(get_post_thumbnail_id($post_id));
 	$post_content = get_post($post_id);
+	$post_excerpt = (isset($post_content->post_excerpt) && (!empty($post_content->post_excerpt))) ? $post_content->post_excerpt : wp_trim_words(strip_tags(strip_shortcodes($post_content->post_content)),500);
 	$url = 'http://readygraph.com/api/v1/post.json/';
 	if (get_option('readygraph_send_real_time_post_updates')=='true'){
-	$url = 'http://readygraph.com/api/v1/post.json/';
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	else {
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	if ( is_wp_error( $response ) ) {
 	$error_message = $response->get_error_message();
-	//echo "Something went wrong: $error_message";
+
 	} 	else {
-	//echo 'Response:<pre>';
-	//print_r( $response );
-	//echo '</pre>';
+
 	}
 	$app_id = get_option('readygraph_application_id');
 	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=post_created&app_id=$app_id" );
