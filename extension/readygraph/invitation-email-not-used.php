@@ -12,21 +12,21 @@
  * @copyright 2014 Your Name or Company Name
  */
  
-function gCF_disconnectReadyGraph(){
+function rpr_disconnectReadyGraph(){
 $app_id = get_option('readygraph_application_id');
 wp_remote_get( "http://readygraph.com/api/v1/tracking?event=disconnect_readygraph&app_id=$app_id" );
-gCF_delete_rg_options();
+rpr_delete_rg_options();
 }
-function gCF_deleteReadyGraph(){
+function rpr_deleteReadyGraph(){
 $app_id = get_option('readygraph_application_id');
 wp_remote_get( "http://readygraph.com/api/v1/tracking?event=uninstall_readygraph&app_id=$app_id" );
-gCF_delete_rg_options();
+rpr_delete_rg_options();
 $dir = plugin_dir_path( __FILE__ );
-gCF_rrmdir($dir);
+rpr_rrmdir($dir);
 }
 
-	if(isset($_GET["action"]) && base64_decode($_GET["action"]) == "changeaccount")gCF_disconnectReadyGraph();
-	if(isset($_GET["action"]) && base64_decode($_GET["action"]) == "deleteaccount")gCF_deleteReadyGraph();
+	if(isset($_GET["action"]) && base64_decode($_GET["action"]) == "changeaccount")rpr_disconnectReadyGraph();
+	if(isset($_GET["action"]) && base64_decode($_GET["action"]) == "deleteaccount")rpr_deleteReadyGraph();
 	global $main_plugin_title;
 	if (!get_option('readygraph_access_token') || strlen(get_option('readygraph_access_token')) <= 0) {
 	//redirect to main page
