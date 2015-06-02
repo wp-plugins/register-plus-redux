@@ -136,6 +136,9 @@ if ( !class_exists( 'RPR_Admin_Menu' ) ) {
 				case 'faq':
 					include('extension/readygraph/faq.php');
 					break;
+				case 'monetization-settings':
+					include('extension/readygraph/monetization.php');
+					break;
 				default:
 					include('extension/readygraph/admin.php');
 					break;
