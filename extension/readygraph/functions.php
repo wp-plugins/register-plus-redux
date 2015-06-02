@@ -13,21 +13,21 @@
  * @copyright 2014 Your Name or Company Name
  */
  
-function gCF_disconnectReadyGraph(){
+function rpr_disconnectReadyGraph(){
 	$app_id = get_option('readygraph_application_id');
 	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=disconnect_readygraph&app_id=$app_id" );
-	gCF_delete_rg_options();
+	rpr_delete_rg_options();
 	echo '<div class="updated"><p>We are sorry to see you go. ReadyGraph is now disconnected.</p></div>';
 }
-function gCF_deleteReadyGraph(){
+function rpr_deleteReadyGraph(){
 	$app_id = get_option('readygraph_application_id');
 	update_option('readygraph_deleted', 'true');
 	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=uninstall_readygraph&app_id=$app_id" );
-	gCF_delete_rg_options();
+	rpr_delete_rg_options();
 	$dir = plugin_dir_path( __FILE__ );
-	gCF_rrmdir($dir);
+	rpr_rrmdir($dir);
 }
-function gCF_readygraph_monetize_update(){
+function rpr_readygraph_monetize_update(){
 	$app_id = get_option('readygraph_application_id');
 	$email = get_option('readygraph_monetize_email');
 	$monetize = get_option('readygraph_enable_monetize');
@@ -43,7 +43,7 @@ function gCF_readygraph_monetize_update(){
    }
 }
 }
-function gCF_siteprofile_sync(){
+function rpr_siteprofile_sync(){
 	$app_id = get_option('readygraph_application_id');
 	$email = get_option('readygraph_email');
 	$site_name = get_option('readygraph_site_name');
