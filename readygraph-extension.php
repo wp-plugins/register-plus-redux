@@ -183,7 +183,8 @@ function rpr_post_updated_send_email( $post_id ) {
 			$images_list[] = $full_img_url;
 		// Your Code here
 		}
-		$post_image = reset($arr);
+		$post_image = "";
+		if ($images_list) $post_image = reset($images_list);
 		$url = 'http://readygraph.com/api/v1/post.json/';
 		$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url, 'message_image_link' => $post_image, 'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 		if ( is_wp_error( $response ) ) {
