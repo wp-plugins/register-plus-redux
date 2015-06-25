@@ -165,6 +165,8 @@ function rg_rpr_popup_options_enqueue_scripts() {
 
 function rpr_post_updated_send_email( $post_id ) {
 	// If this is just a revision, don't send the email.
+	$post_type = get_post_type( $post_id );
+	if ('page' != $post_type && 'post' != $post_type) return;
 	if ( wp_is_post_revision( $post_id ) ) return;
 	if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0 && get_option('readygraph_send_blog_updates') == "true"){
 		$post_title = get_the_title( $post_id );
