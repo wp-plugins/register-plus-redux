@@ -1,5 +1,6 @@
 <?php
-  // Extension Configuration
+	if ( ! defined( 'ABSPATH' ) ) exit;
+	// Extension Configuration
 	$rpr_plugin_slug = basename(dirname(__FILE__));
 	$rpr_menu_slug = 'readygraph-app';
 	$rpr_main_plugin_title = 'Register Plus Redux';
